@@ -1,13 +1,22 @@
 'use strict'
 var router = require('express').Router()
-var url = require('url');
-
+var url = require('url')
 var qiniu = require('../lib/qiniu')
-var router = require('express').Router();
 
 
-router.post('/upload', function (req, res, next) {
-    
+// router.post('/upload', function (req, res, next) {
+//   qiniu.upload(req.body.file).then((state) => {
+//     res.send(state)
+//   })
+// })
+
+
+router.get('/uptoken', function (req, res, next) {
+  let filename = `${Date.now()}.png`
+  res.send({
+    token: qiniu.uptoken(filename),
+    filename: filename
+  })
 })
 
-module.exports = router;
+module.exports = router
