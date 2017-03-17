@@ -12,7 +12,7 @@ var qiniu = require('../lib/qiniu')
 
 
 router.get('/uptoken', function (req, res, next) {
-  let filename = `${Date.now()}.png`
+  let filename = `${req.params.prefix}/${Date.now()}.png`
   res.send({
     token: qiniu.uptoken(filename),
     filename: filename
